@@ -1,8 +1,8 @@
 // Define constants
 const int RIGHT_MOTOR_FORWARD_PIN = 9;
 const int RIGHT_MOTOR_BACKWARD_PIN = 10;
-const int LEFT_MOTOR_FORWARD_PIN = 5;
-const int LEFT_MOTOR_BACKWARD_PIN = 6;
+const int LEFT_MOTOR_FORWARD_PIN = 2;
+const int LEFT_MOTOR_BACKWARD_PIN = 3;
 
 const int JOYSTICK_X_PIN = A0;
 const int JOYSTICK_Y_PIN = A1;
