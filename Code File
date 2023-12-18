@@ -1,0 +1,62 @@
+// Define constants
+const int RIGHT_MOTOR_FORWARD_PIN = 9;
+const int RIGHT_MOTOR_BACKWARD_PIN = 10;
+const int LEFT_MOTOR_FORWARD_PIN = 5;
+const int LEFT_MOTOR_BACKWARD_PIN = 6;
+
+const int JOYSTICK_X_PIN = A0;
+const int JOYSTICK_Y_PIN = A1;
+// const int SW_pin = 8; // digital pin connected to switch output
+
+int x;
+int y;
+
+void setup() {
+  pinMode(RIGHT_MOTOR_FORWARD_PIN, OUTPUT);
+  pinMode(RIGHT_MOTOR_BACKWARD_PIN, OUTPUT);
+  pinMode(LEFT_MOTOR_FORWARD_PIN, OUTPUT);
+  pinMode(LEFT_MOTOR_BACKWARD_PIN, OUTPUT);
+  pinMode(JOYSTICK_X_PIN, INPUT);
+  pinMode(JOYSTICK_Y_PIN, INPUT);
+}
+
+void loop() {
+  // Read joystick values
+  x = analogRead(JOYSTICK_X_PIN);
+  y = analogRead(JOYSTICK_Y_PIN);
+
+  // Move the robot based on joystick values
+  if (x < 100) {
+    // Move forward
+    digitalWrite(RIGHT_MOTOR_FORWARD_PIN, HIGH);
+    digitalWrite(RIGHT_MOTOR_BACKWARD_PIN, LOW);
+    digitalWrite(LEFT_MOTOR_FORWARD_PIN, HIGH);
+    digitalWrite(LEFT_MOTOR_BACKWARD_PIN, LOW);
+
+  } else if (x > 900) {
+    // Move backward
+    digitalWrite(RIGHT_MOTOR_FORWARD_PIN, LOW);
+    digitalWrite(RIGHT_MOTOR_BACKWARD_PIN, HIGH);
+    digitalWrite(LEFT_MOTOR_FORWARD_PIN, LOW);
+    digitalWrite(LEFT_MOTOR_BACKWARD_PIN, HIGH);
+  } else if (y < 100) {
+    // Move right
+    digitalWrite(RIGHT_MOTOR_FORWARD_PIN, LOW);
+    digitalWrite(RIGHT_MOTOR_BACKWARD_PIN, HIGH);
+    digitalWrite(LEFT_MOTOR_FORWARD_PIN, HIGH);
+    digitalWrite(LEFT_MOTOR_BACKWARD_PIN, LOW);
+  } else if (y > 900) {
+    // Move left
+    digitalWrite(RIGHT_MOTOR_FORWARD_PIN, HIGH);
+    digitalWrite(RIGHT_MOTOR_BACKWARD_PIN, LOW);
+    digitalWrite(LEFT_MOTOR_FORWARD_PIN, LOW);
+    digitalWrite(LEFT_MOTOR_BACKWARD_PIN, HIGH);
+  } else {
+    // Stop the robot
+    digitalWrite(RIGHT_MOTOR_FORWARD_PIN, LOW);
+    digitalWrite(RIGHT_MOTOR_BACKWARD_PIN, LOW);
+    digitalWrite(LEFT_MOTOR_FORWARD_PIN, LOW);
+    digitalWrite(LEFT_MOTOR_BACKWARD_PIN, LOW);
+  }
+}
+
